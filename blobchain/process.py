@@ -16,7 +16,7 @@ def process(old_path, new_path):
     im = Image.open(old_path).convert('RGB')
     width, height = im.size
 
-    out = Image.new('RGB', (width, height), (255, 255, 255))
+    out = Image.new('RGB', (width, height), (239, 97, 145))
 
     region = im.crop((0, 0, width, height))
     region = region.resize((width - margin * 2, height - margin * 2))
