@@ -1,0 +1,14 @@
+language: python
+python: '3.7'
+branches:
+  only:
+    - master
+
+# Copies the last image over to the right branch
+before_script: sh bin/prebuild.sh
+
+# Processes the image
+script: python3 blobchain/index.py
+
+# Carries the image back to the image branch, and commits
+after_success: sh bin/deploy.sh
