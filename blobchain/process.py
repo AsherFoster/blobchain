@@ -1,6 +1,6 @@
 import subprocess
 import os
-import blobchain.color
+import color
 from PIL import Image, ImageFont, ImageDraw, ImageEnhance
 
 
@@ -37,11 +37,11 @@ def process(old_path, new_path):
     margin = 30
 
     # Convert the current hash to a color (they're both 6 char hex strings!)
-    color = blobchain.color.to_rgb(get_current_commit())
-    text_color = blobchain.color.contrast_color(color)
+    bg_color = color.to_rgb(get_current_commit())
+    text_color = color.contrast_color(color)
 
     # Create a new image that's RGB, the same size, and has a (R, G, B) background
-    out = Image.new('RGB', (width, height), color)
+    out = Image.new('RGB', (width, height), bg_color)
 
     # Grab the entire old image as a region
     region = im.crop((0, 0, width, height))
