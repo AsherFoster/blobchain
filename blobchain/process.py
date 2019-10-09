@@ -1,6 +1,6 @@
 import subprocess
 import os
-from PIL import Image, ImageFont, ImageDraw
+from PIL import Image, ImageFont, ImageDraw, ImageEnhance
 
 margin = 30
 
@@ -28,5 +28,9 @@ def process(old_path, new_path):
     txt = get_text()
     print('Drawing: ' + txt)
     draw.text((10, height - 33), txt, font=fnt, fill=(0, 0, 0))
+
+    commit_hash = int(txt.split(" ")[0], 16)
+    contrast = ImageEnhance.Contrast(out)
+    out = contrast.enhance((commit_hash % 300) / 100 + 0.75)
 
     out.save(new_path)
